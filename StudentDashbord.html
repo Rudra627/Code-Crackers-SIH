@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+    /* dashboard.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #fffbe7;
+}
+
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: #23212b;
+  color: #fff;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+}
+
+.logo {
+  font-size: 1.6em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  padding: 14px 30px;
+  cursor: pointer;
+  border-left: 5px solid transparent;
+  transition: background 0.2s, border-left 0.2s;
+}
+
+.nav li.active, .nav li:hover {
+  background: #37304a;
+  border-left: 5px solid #ff962f;
+}
+
+.main-content {
+  flex: 1;
+  padding: 40px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.2em;
+  color: #37304a;
+}
+
+.subtitle {
+  color: #ff962f;
+  font-size: 1.1em;
+  margin-top: 6px;
+  display: inline-block;
+}
+
+.attendance-section {
+  margin-top: 36px;
+  margin-bottom: 40px;
+}
+
+.attendance-card {
+  display: flex;
+  align-items: center;
+  background: #fff9ea;
+  border-radius: 18px;
+  box-shadow: 0 6px 30px rgba(255, 150, 47, 0.1);
+  padding: 22px 40px;
+  max-width: 420px;
+  gap: 24px;
+}
+
+.progress-circle {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff962f 60%, #fff6d8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  font-weight: 700;
+  color: #23212b;
+  box-shadow: 0 2px 8px rgba(255,150,47,0.2);
+  margin-right: 16px;
+}
+
+.timetable-section {
+  max-width: 650px;
+}
+
+.timetable {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(55,48,74,0.08);
+  overflow: hidden;
+}
+
+.timetable thead {
+  background: #ffe6c2;
+  color: #37304a;
+}
+
+.timetable th, .timetable td {
+  padding: 13px 18px;
+  text-align: left;
+}
+
+.timetable tbody tr:nth-child(even) {
+  background: #fffbe7;
+}
+
+@media (max-width: 800px) {
+  .container {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 10px;
+  }
+  .main-content {
+    padding: 16px;
+  }
+}
+
+
+ </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="logo">Student.io</div>
+      <ul class="nav">
+        <li class="Dashboard-btn">Dashboard</li>
+        <li class="Profile-btn"> Profile</li>
+        <li class="Attendance-btn">Attendance</li>
+        <li>Logout</li>
+      </ul>
+    </aside>
+    <main class="main-content">
+      <header>
+        <h1>Welcome, Rahul Sharma</h1>
+        <span class="subtitle">Your personal student portal 👋</span>
+      </header>
+      <section class="attendance-section">
+        <h2>Attendance Overview</h2>
+        <div class="attendance-card">
+          <div class="progress-circle">
+            <span>88%</span>
+          </div>
+          <div>
+            <p>Attendance this month</p>
+            <p>Last updated: Sep 7, 2025</p>
+          </div>
+        </div>
+      </section>
+      <section class="timetable-section">
+        <h2>Today's Classes</h2>
+        <table class="timetable">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Subject</th>
+              <th>Room</th>
+              <th>Teacher</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>9:00 - 10:00</td>
+              <td>Data Structures</td>
+              <td>C102</td>
+              <td>Mr. Verma</td>
+            </tr>
+            <tr>
+              <td>10:15 - 11:15</td>
+              <td>Database Systems</td>
+              <td>B204</td>
+              <td>Ms. Joshi</td>
+            </tr>
+            <tr>
+              <td>11:30 - 12:30</td>
+              <td>Web Development</td>
+              <td>A301</td>
+              <td>Mr. Khan</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </div>
+  <script>
+   let profile= document.querySelector('.Profile-btn');
+   profile.onclick = function() {
+  window.location.href = 'StudentProfile.html'; // Change 'login.html' if your
+}
+
+// let dashbord=document.querySelector('.Dashboard-btn');
+// dashbord.onclick = function() {
+//   window.location.href = 'StudentDashbord.html'; // Change 'login.html' if your
+// }
+// let attendence=document.querySelector('.Attendance-btn');
+// attendence.onclick = function() {
+//   window.location.href = 'StudentAttenedence.html'; // Change 'login.html' if your
+// }
+const pages = {
+    "Dashboard": "StudentDashbord.html",
+    "Profile": "StudentProfile.html",
+    "Attendance": "StudentAttenedence.html",
+    "Logout": "Home.html"   // Or your login page file; on logout, it usually goes back to login
+  };
+
+  document.querySelectorAll('.nav li').forEach(function(item) {
+    item.addEventListener('click', function() {
+      // Remove active class from all
+      document.querySelectorAll('.nav li').forEach(li => li.classList.remove('active'));
+      // Add active class to clicked
+      this.classList.add('active');
+
+      // Redirect to the selected page
+      const pageName = this.textContent.trim();
+      if (pages[pageName]) {
+        window.location.href = pages[pageName];
+      }
+    });
+  });
+  //  Optional: on page load, set the corresponding menu item active
+  window.addEventListener('DOMContentLoaded', function() {
+    const page = window.location.pathname.split('/').pop();
+    let active = null;
+    for (let key in pages) {
+      if (pages[key] === page) {
+        active = key;
+        break;
+      }
+    }
+    document.querySelectorAll('.nav li').forEach(function(item) {
+      if (item.textContent.trim() === active) {
+        item.classList.add('active');
+      } else {
+        item.classList.remove('active');
+      }
+    });
+  });
+  </script>
+</body>
+</html>

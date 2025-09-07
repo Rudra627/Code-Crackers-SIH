@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login | </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+    :root {
+  --background: #faf7f4;
+  --card-bg: #fff0ea;
+  --primary: #ff5a13;
+  --text-dark: #111;
+  --muted: #757575;
+  --shadow: 0 8px 40px -16px #ff5a1384;
+}
+
+body, html {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--background);
+  height: 100%;
+}
+
+.login-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+}
+
+.login-card {
+  background: var(--card-bg);
+  border-radius: 22px;
+  box-shadow: var(--shadow);
+  padding: 40px 32px;
+  min-width: 320px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-header {
+  font-size: 2rem;
+  color: var(--primary);
+  font-weight: 800;
+  margin-bottom: 28px;
+  letter-spacing: 0.02em;
+}
+
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-group label {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 5px;
+  font-weight: 500;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: none;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 1.05rem;
+  margin-bottom: 5px;
+  box-shadow: 0 2px 8px -6px #ff5a1322;
+  outline: none;
+  transition: box-shadow .2s;
+}
+.input-group input:focus {
+  box-shadow: 0 2px 16px -8px #ff5a1360;
+  border: 1px solid var(--primary);
+}
+
+.login-btn {
+  width: 100%;
+  padding: 11px;
+  background: var(--primary);
+  color: #fff;
+  font-size: 1.07rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 9px;
+  box-shadow: 0 4px 20px -12px #ff5a1360;
+  cursor: pointer;
+  transition: background .2s;
+}
+
+.login-btn:hover {
+  background: #e74c3c;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 24px 8px;
+    min-width: 90vw;
+  }
+  .login-header {
+    font-size: 1.35rem;
+  }
+}
+
+ </style>
+</head>
+<body>
+  <div class="login-bg">
+    <div class="login-card">
+      <div class="login-header">Login</div>
+      <form class="login-form" autocomplete="off">
+        <div class="input-group">
+          <label>ROllNO/emp id</label>
+          <input type="text" required>
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" required>
+        </div>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+    </div>
+  </div>
+<script>
+  // Define demo credentials
+  const demoUserID = "24CSEAIML001";
+  const demoPassword = "24@001";
+   const teacherid = "24CSETECH001";
+  const teacherPassword = "24@001";
+
+  document.querySelector('.login-form').onsubmit = function(e) {
+    e.preventDefault();
+
+    const userID = this.querySelector('input[type="text"]').value.trim();
+    const password = this.querySelector('input[type="password"]').value;
+
+    // Simple validation check against demo credentials
+    if(userID === demoUserID && password === demoPassword ) {
+      alert('Login Successful! Redirecting to Student Dashboard...');
+      // Redirect to dashboard page - change href if your dashboard file is named differently
+      window.location.href = "StudentDashbord.html";
+    } else {
+      alert('Invalid ID or Password. Please try again.');
+    }
+    if(userID === teacherid && password === teacherPassword ) {
+      alert('Login Successful! Redirecting to Student Dashboard...');
+      // Redirect to dashboard page - change href if your dashboard file is named differently
+      window.location.href = "TeacherDashBord.html";
+    } else {
+      alert('Invalid ID or Password. Please try again.');
+    }
+  };
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Personalized AI Coach | Lumi.ai Inspired</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <style>
+    :root {
+  --main-bg: #fff;
+  --container-bg: #faf7f4;
+  --primary: #ff5a13;
+  --card-bg: #fff0ea;
+  --navbar-bg: #fff;
+  --text-dark: #111;
+  --muted: #6a6a6a;
+  --shadow: 0 8px 50px -24px #ff5a1344;
+}
+body {
+  margin: 0;
+  font-family: 'Inter', Arial, sans-serif;
+  background: var(--container-bg);
+  color: var(--text-dark);
+}
+.navbar {
+    height: 0.5rem;
+  background: var(--navbar-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 48px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+}
+.logo {
+  font-weight: bold;
+  font-size: 1.6rem;
+  letter-spacing: 0.02em;
+}
+.login-btn {
+  padding: 8px 24px;
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: 0 4px 16px -10px #ff5a1384;
+  transition: background .2s;
+}
+.login-btn:hover {
+  background: #e74c3c;
+}
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+  max-width: 1100px;
+  padding: 64px 20px;
+  min-height: 80vh;
+}
+.left-section {
+  flex: 1;
+  padding-right: 40px;
+}
+.ai-coach-label {
+  color: var(--primary);
+  font-size: 1rem;
+  margin-bottom: 18px;
+  font-weight: 500;
+  letter-spacing: 0.09em;
+}
+h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  line-height: 1.25;
+  margin: 0 0 18px;
+}
+.sparkle {
+  font-size: 2rem;
+  vertical-align: middle;
+}
+.description {
+  font-size: 1.08rem;
+  color: var(--muted);
+  margin-bottom: 28px;
+  max-width: 400px;
+}
+.cta-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+.primary-btn {
+  padding: 10px 28px;
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  border-radius: 24px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 26px -10px #ff5a1344;
+  transition: background .2s;
+}
+.primary-btn:hover {
+  background: #e74c3c;
+}
+.secondary-btn {
+  padding: 10px 24px;
+  background: #eee;
+  border: none;
+  color: var(--primary);
+  border-radius: 24px;
+  font-size: 1.08rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.right-section {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.card {
+  background: var(--card-bg);
+  border-radius: 24px;
+  padding: 36px 44px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 300px;
+  max-width: 360px;
+}
+.progress-title {
+  font-size: 1.18rem;
+  color: var(--text-dark);
+  margin-bottom: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+.progress-score {
+  font-size: 2.9rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+.progress-bars {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-end;
+  margin-top: 10px;
+  width: 100%;
+}
+.bar {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  width: 56px;
+  height: 110px;
+}
+.label {
+  font-size: .95rem;
+  color: var(--muted);
+  margin-top: 4px;
+  margin-bottom: 2px;
+}
+.progress {
+  width: 48px;
+  border-radius: 12px 12px 0 0;
+  background: #ffd6be;
+  color: #fff;
+  font-size: 1rem;
+  text-align: center;
+  transition: height .5s;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-weight: 500;
+}
+.bar.active .progress {
+  background: var(--primary);
+  color: #fff;
+  border: 2px solid #ff5a13;
+}
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    gap: 56px;
+    align-items: flex-start;
+  }
+  .right-section {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .navbar {
+    padding: 14px 16px;
+  }
+  .container {
+    padding: 36px 5px;
+    max-width: 100vw;
+  }
+  .card {
+    padding: 22px;
+    min-width: 210px;
+    max-width: 95vw;
+  }
+  h1 {
+    font-size: 1.42rem;
+  }
+}
+
+ </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">Code-Crackers</div>
+    <button class="login-btn" >Login</button>
+  </nav>
+  <main class="container">
+    <div class="left-section">
+      <div class="ai-coach-label">Wifi Attendence Taker</div>
+      <h1>
+        Automated Student Attendance Monitoring and Analytics System for Colleges
+        <!-- <span class="sparkle">✨</span> -->
+        <!-- <span>personalized AI-powered guidance</span> -->
+      </h1>
+      <p class="description">
+       
+      </p>
+      <div class="cta-buttons">
+        <button class="primary-btn">Start now</button>
+        <button class="secondary-btn">Join-now</button>
+      </div>
+    </div>
+    <div class="right-section">
+      <div class="card">
+        <div class="progress-title">Attendance progress score</div>
+        <div class="progress-score">92%</div>
+        <div class="progress-bars">
+          <div class="bar">
+            <span class="label">Programming</span>
+            <div class="progress" style="height: 66%;">66%</div>
+          </div>
+          <div class="bar">
+            <span class="label">Data & Analytics</span>
+            <div class="progress" style="height: 87%;">87%</div>
+          </div>
+          <div class="bar active">
+            <span class="label">May</span>
+            <div class="progress" style="height: 92%;">92%</div>
+          </div>
+          <div class="bar">
+            <span class="label">Languages</span>
+            <div class="progress" style="height: 72%;">72%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+<script>
+  document.querySelector('.login-btn').onclick = function() {
+    window.location.href = 'Login.html'; // Change 'login.html' if your login file has a different name
+  };
+
+  // The following code expects a navigation menu with class 'nav' and <li> items.
+  // If you do not have such a menu, you can remove this part or add the menu in your HTML.
+  
+</script>
+</body>
+</html>

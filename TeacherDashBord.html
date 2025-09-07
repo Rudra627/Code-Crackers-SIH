@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fffbe7;
+    }
+    .container {
+      display: flex;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 220px;
+      background: #23212b;
+      color: #fff;
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+    }
+    .logo {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+    .nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .nav li {
+      padding: 14px 30px;
+      cursor: pointer;
+      border-left: 5px solid transparent;
+      transition: background 0.2s, border-left 0.2s;
+    }
+    .nav li.active, .nav li:hover {
+      background: #37304a;
+      border-left: 5px solid #ff962f;
+    }
+    
+    .profile-container {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 220px;
+      background: #23212b;
+      color: #fff;
+      padding: 24px 0;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+    }
+
+    .logo {
+      font-size: 1.6em;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 32px;
+      letter-spacing: 1px;
+    }
+
+    .nav {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .nav li {
+      padding: 14px 30px;
+      cursor: pointer;
+      border-left: 5px solid transparent;
+      transition: background 0.2s, border-left 0.2s;
+      color: #fff;
+    }
+
+    .nav li.active, .nav li:hover {
+      background: #37304a;
+      border-left: 5px solid #ff962f;
+    }
+
+    .profile-main {
+      flex: 1;
+      padding: 40px 60px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.4em;
+      color: #37304a;
+      margin-bottom: 40px;
+    }
+
+    .profile-content {
+      display: flex;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .photo-section {
+      flex: 0 0 220px;
+      text-align: center;
+      background: #fff9ea;
+      border-radius: 18px;
+      box-shadow: 0 6px 30px rgba(255, 150, 47, 0.1);
+      padding: 25px;
+    }
+
+    .photo-section img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 5px solid #ff962f;
+      object-fit: cover;
+    }
+
+    .photo-section h2 {
+      margin: 14px 0 6px;
+      font-size: 1.6em;
+      color: #23212b;
+    }
+
+    .teacher-id {
+      color: #ff962f;
+      font-weight: 600;
+      font-size: 1em;
+    }
+
+    .details-section {
+      flex: 1;
+      background: #fff9ea;
+      border-radius: 18px;
+      padding: 30px 40px;
+      box-shadow: 0 8px 40px rgba(255, 150, 47, 0.08);
+      max-width: 650px;
+    }
+
+    .details-section section {
+      margin-bottom: 36px;
+    }
+
+    .details-section h3 {
+      border-bottom: 2px solid #ff962f;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #37304a;
+    }
+
+    .details-section ul {
+      list-style-type: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .details-section ul li {
+      font-size: 1.1em;
+      margin-bottom: 12px;
+    }
+
+    .details-section ul li strong {
+      color: #ff962f;
+      width: 160px;
+      display: inline-block;
+    }
+
+    @media (max-width: 900px) {
+      .profile-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .details-section {
+        max-width: 100%;
+        padding: 20px;
+      }
+    }
+    .main-content {
+      flex: 1;
+      padding: 40px;
+      background: #fffbe7;
+    }
+    .main-content h2 {
+      margin-top: 0;
+      color: #23212b;
+      font-size: 2em;
+    }
+    @media (max-width: 800px) {
+      .container { flex-direction: column; }
+      .sidebar { width: 100%; flex-direction: row; justify-content: space-around; padding: 10px; }
+      .main-content { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <aside class="sidebar">
+    <div class="logo">Teacher.io</div>
+    <ul class="nav">
+      <li id="profileMenu">Profile</li>
+      <li id="attendanceMenu">Take Attendance</li>
+      <li id="logoutMenu">Logout</li>
+    </ul>
+  </aside>
+  <main class="main-content" id="mainContent">
+    <h2>Welcome to Teacher Dashboard</h2>
+    <p>Select an option from the sidebar to continue.</p>
+
+     <div class="profile-content">
+        <div class="photo-section">
+          <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Teacher Photo" />
+          <h2>Mrs. Priya Singh</h2>
+          <span class="teacher-id">ID: TCH202512</span>
+        </div>
+        <div class="details-section">
+
+          <section>
+            <h3>Professional Details</h3>
+            <ul>
+              <li><strong>Department:</strong> Computer Science</li>
+              <li><strong>Designation:</strong> Assistant Professor</li>
+              <li><strong>Experience:</strong> 7 Years</li>
+              <li><strong>Email:</strong> priya.singh@email.com</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Personal Details</h3>
+            <ul>
+              <li><strong>Phone Number:</strong> +91 9876543210</li>
+              <li><strong>Address:</strong> 456 Orange Street, Mumbai, India</li>
+            </ul>
+          </section>
+
+          <section>
+            <h3>Additional Information</h3>
+            <ul>
+              <li><strong>Hostel Warden:</strong> No</li>
+              <li><strong>Subjects :</strong> Data Structures, OOP, DBMS</li>
+            </ul>
+          </section>
+
+        </div>
+      </div>
+ 
+  </main>
+</div>
+<script>
+// Page filenames
+const pages = {
+  "Profile": "TeacherDashBord.html",
+  "Take Attendance": "TeacherAttendence.html",
+  "Logout": "Home.html"
+};
+
+// Sidebar menu logic
+document.querySelectorAll('.nav li').forEach(function(item) {
+  item.addEventListener('click', function() {
+    // Highlight active
+    document.querySelectorAll('.nav li').forEach(li => li.classList.remove('active'));
+    this.classList.add('active');
+    // Redirect to selected page
+    const text = this.textContent.trim();
+    if (pages[text]) window.location.href = pages[text];
+  });
+});
+
+// Highlight active on load
+window.addEventListener('DOMContentLoaded', function() {
+  const page = window.location.pathname.split('/').pop();
+  let active;
+  for (let key in pages) {
+    if (pages[key] === page) active = key;
+  }
+  document.querySelectorAll('.nav li').forEach(function(item) {
+    if (item.textContent.trim() === active) item.classList.add('active');
+    else item.classList.remove('active');
+  });
+});
+</script>
+</body>
+</html>

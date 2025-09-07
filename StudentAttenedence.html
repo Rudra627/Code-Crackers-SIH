@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Attendance Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <style>
+    /* attendance.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #fffbe7;
+  color: #37304a;
+}
+
+.attendance-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 220px;
+  background: #23212b;
+  color: #fff;
+  padding: 24px 0;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0,0,0,0.04);
+}
+
+.logo {
+  font-size: 1.6em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 32px;
+  letter-spacing: 1px;
+}
+
+.nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav li {
+  padding: 14px 30px;
+  cursor: pointer;
+  border-left: 5px solid transparent;
+  transition: background 0.2s, border-left 0.2s;
+}
+
+.nav li.active, .nav li:hover {
+  background: #37304a;
+  border-left: 5px solid #ff962f;
+}
+
+.attendance-main {
+  flex: 1;
+  padding: 40px 50px;
+}
+
+.attendance-main header h1 {
+  margin: 0;
+  font-size: 2.4em;
+  margin-bottom: 6px;
+}
+
+.attendance-main header p {
+  color: #ff962f;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 40px;
+}
+
+.attendance-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  justify-content: center;
+}
+
+.subject-card {
+  width: 140px;
+  background: #fff9ea;
+  border-radius: 18px;
+  padding: 20px 10px;
+  text-align: center;
+  box-shadow: 0 6px 30px rgba(255, 150, 47, 0.12);
+  transition: transform 0.2s ease;
+}
+
+.subject-card:hover {
+  transform: scale(1.05);
+}
+
+.subject-card h3 {
+  margin-top: 12px;
+  font-weight: 700;
+  color: #37304a;
+  font-size: 1.1em;
+}
+
+/* Circular Progress Styles */
+.progress-circle {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+}
+
+.progress-circle span {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  line-height: 110px;
+  text-align: center;
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #ff962f;
+  z-index: 2;
+  user-select: none;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 110px;
+  max-height: 110px;
+  transform: rotate(-90deg);
+  position: relative;
+  z-index: 1;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #eee;
+  stroke-width: 3.8;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 3.8;
+  stroke-linecap: round;
+  stroke: #ff962f;
+  transition: stroke-dasharray 0.3s ease;
+}
+
+/* Colors */
+.circular-chart.orange .circle {
+  stroke: #ff962f;
+}
+
+.circular-chart.green .circle {
+  stroke: #4caf50;
+}
+
+.circular-chart.blue .circle {
+  stroke: #2196f3;
+}
+
+.circular-chart.purple .circle {
+  stroke: #9c27b0;
+}
+
+.circular-chart.pink .circle {
+  stroke: #e91e63;
+}
+
+.circular-chart.yellow .circle {
+  stroke: #fbc02d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 700px) {
+  .attendance-main {
+    padding: 20px 16px;
+  }
+  .attendance-cards {
+    gap: 24px;
+  }
+  .subject-card {
+    width: 120px;
+    padding: 16px 10px;
+  }
+  .progress-circle {
+    width: 90px;
+    height: 90px;
+  }
+  .progress-circle span {
+    line-height: 90px;
+    font-size: 1.4em;
+  }
+}
+/* Add new colors for new subjects */
+
+.circular-chart.teal .circle {
+  stroke: #009688;
+}
+
+.circular-chart.cyan .circle {
+  stroke: #00bcd4;
+}
+
+.circular-chart.brown .circle {
+  stroke: #795548;
+}
+
+/* Adjustments to center percentage exactly */
+
+.progress-circle {
+  position: relative;
+  width: 110px;
+  height: 110px;
+  margin: 0 auto;
+}
+
+.progress-circle span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #ff962f;
+  user-select: none;
+  z-index: 2;
+}
+
+
+ </style>
+</head>
+<body>
+  <div class="attendance-container">
+    <aside class="sidebar">
+      <div class="logo">Student.io</div>
+      <ul class="nav">
+        <li>Dashboard</li>
+        <li>Profile</li>
+        <li class="active">Attendance</li>
+        <li>Logout</li>
+      </ul>
+    </aside>
+    <main class="attendance-main">
+      <header>
+        <h1>Attendance Details</h1>
+        <p>Track your attendance progress for each subject</p>
+      </header>
+      <section class="attendance-cards">
+
+        <article class="subject-card">
+          <div class="progress-circle" style="--percentage: 82;">
+            <span>82%</span>
+            <svg viewBox="0 0 36 36" class="circular-chart orange">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="circle"
+                stroke-dasharray="82, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            </svg>
+          </div>
+          <h3>Applied Statistics</h3>
+        </article>
+
+        <article class="subject-card">
+          <div class="progress-circle" style="--percentage: 90;">
+            <span>90%</span>
+            <svg viewBox="0 0 36 36" class="circular-chart green">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="circle"
+                stroke-dasharray="90, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            </svg>
+          </div>
+          <h3>AIES</h3>
+        </article>
+
+        <article class="subject-card">
+          <div class="progress-circle" style="--percentage: 74;">
+            <span>74%</span>
+            <svg viewBox="0 0 36 36" class="circular-chart blue">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="circle"
+                stroke-dasharray="74, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            </svg>
+          </div>
+          <h3>OOP</h3>
+        </article>
+
+        <article class="subject-card">
+          <div class="progress-circle" style="--percentage: 95;">
+            <span>95%</span>
+            <svg viewBox="0 0 36 36" class="circular-chart purple">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="circle"
+                stroke-dasharray="95, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            </svg>
+          </div>
+          <h3>DBMS</h3>
+        </article>
+
+        <article class="subject-card">
+          <div class="progress-circle" style="--percentage: 88;">
+            <span>88%</span>
+            <svg viewBox="0 0 36 36" class="circular-chart pink">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="circle"
+                stroke-dasharray="88, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            </svg>
+          </div>
+          <h3>English</h3>
+        </article>
+
+        <article class="subject-card">
+          <div class="progress-circle" style="--percentage: 79;">
+            <span>79%</span>
+            <svg viewBox="0 0 36 36" class="circular-chart yellow">
+              <path class="circle-bg"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+              <path class="circle"
+                stroke-dasharray="79, 100"
+                d="M18 2.0845
+                  a 15.9155 15.9155 0 0 1 0 31.831
+                  a 15.9155 15.9155 0 0 1 0 -31.831"/>
+            </svg>
+          </div>
+          <h3>DE</h3>
+        </article>
+        <!-- Add these new subjects inside the <section class="attendance-cards"> below existing ones -->
+
+<article class="subject-card">
+  <div class="progress-circle" style="--percentage: 85;">
+    <span>85%</span>
+    <svg viewBox="0 0 36 36" class="circular-chart teal">
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"/>
+      <path class="circle"
+        stroke-dasharray="85, 100"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"/>
+    </svg>
+  </div>
+  <h3>OOP Lab</h3>
+</article>
+
+<article class="subject-card">
+  <div class="progress-circle" style="--percentage: 91;">
+    <span>91%</span>
+    <svg viewBox="0 0 36 36" class="circular-chart cyan">
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"/>
+      <path class="circle"
+        stroke-dasharray="91, 100"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"/>
+    </svg>
+  </div>
+  <h3>English Lab</h3>
+</article>
+
+<article class="subject-card">
+  <div class="progress-circle" style="--percentage: 92;">
+    <span>92%</span>
+    <svg viewBox="0 0 36 36" class="circular-chart brown">
+      <path class="circle-bg"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"/>
+      <path class="circle"
+        stroke-dasharray="92, 100"
+        d="M18 2.0845
+          a 15.9155 15.9155 0 0 1 0 31.831
+          a 15.9155 15.9155 0 0 1 0 -31.831"/>
+    </svg>
+  </div>
+  <h3>DBMS Lab</h3>
+</article>
+
+
+      </section>
+    </main>
+  </div>
+</body>
+</html>
